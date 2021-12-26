@@ -71,7 +71,7 @@ Neste módulo você irá aprender a integrar sua aplicação React Native com um
 - Autenticação e Navegação
 - Recursos Offline
 
-## 📝 Licença
+## 🎗️ License
 
 Este projeto esta sob a licença MIT.
 
