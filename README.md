@@ -10,7 +10,7 @@ O Ignite é um projeto incrível da Rocketseat acerca de diversas tecnologias. E
 
 # 📑 Conteúdo
 
-## Chapter #1: [Fundamentos do React Native](fundamentals)
+## Chapter #1: [Fundamentos do React Native](myskills)
 
 📱 App - **Skill List**
 
