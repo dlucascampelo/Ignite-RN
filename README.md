@@ -22,7 +22,7 @@ Vamos aprender o ecossistema do desenvolvimento mobile com React Native, criar e
 - Debug no React Native
 - Conclusão
 
-## Chapter #2: [App Modernas em React Native com Expo, Styled Components, Navigation, Etc](gofinances)
+## Chapter #2: [App Modernas em React Native com Expo, Styled Components, Navigation, Etc](GoFinances)
 
 📱 App - **GoFinances**
 
