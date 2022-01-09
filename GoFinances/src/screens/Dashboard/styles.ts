@@ -13,11 +13,9 @@ background-color: ${({ theme }) => theme.colors.background};
 export const Header = styled.View`
 width:100%;
 height:${RFPercentage(40)}px;
-
 justify-content:center;
 align-items:flex-start;
 flex-direction: row;
-
 background-color:${({ theme }) => theme.colors.primary};
 `;
 
@@ -25,7 +23,6 @@ export const UserWrapper = styled.View`
 width:100%;
 padding:0 24px;
 margin-top:${getStatusBarHeight() + RFValue(28)}px;
-
 flex-direction: row;
 justify-content: space-between;
 align-items: center;
@@ -57,7 +54,8 @@ color:${({ theme }) => theme.colors.shape};
 font-family:${({ theme }) => theme.fonts.bold};
 font-size:${RFValue(18)}px;
 `;
-
+export const LogoutButton = styled.TouchableOpacity`
+`;
 export const Icon = styled(Feather)`
 color:${({ theme }) => theme.colors.secondary};
 font-size:${RFValue(24)}px;
@@ -69,7 +67,6 @@ export const HighlightCards = styled.ScrollView.attrs({
   contentContainerStyle: { paddingHorizontal: 24 },
 })`
 width:100%;
-
 position:absolute;
 margin-top:${RFPercentage(20)}px;
 `;
@@ -84,7 +81,6 @@ export const Title = styled.Text`
 font-family:${({ theme }) => theme.fonts.regular};
 font-size:${RFValue(18)}px;
 color:${({ theme }) => theme.colors.title};
-
 margin-bottom:16px;
 `;
 
@@ -94,5 +90,4 @@ export const TransactionsList = styled(FlatList as new (props: FlatListProps<Dat
     paddingBottom: getBottomSpace()
   }
 })`
-
 `;
