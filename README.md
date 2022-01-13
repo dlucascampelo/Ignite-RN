@@ -6,7 +6,7 @@
 
 # 🚀 Sobre
 
-O Ignite é um projeto incrível da Rocketseat acerca de diversas tecnologias. Esse repositório contém o código produzido para a trilha de React Native, ministrada pelo incrível [Rodrigo Gonçalves](https://twitter.com/rodrigogsdev) dividido em capítulos.
+O Ignite é um projeto incrível da Rocketseat acerca de diversas tecnologias. Esse repositório contém o código produzido para a trilha de React Native, ministrada pelo incrível [Rodrigo Gonçalves](https://twitter.com/rodrigogsdev).
 
 # 📑 Conteúdo
 
