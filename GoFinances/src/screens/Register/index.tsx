@@ -55,7 +55,7 @@ export function Register() {
     resolver: yupResolver(schema)
   });
 
-  function handleTransactionsType(type: 'up' | 'down') {
+  function handleTransactionsType(type: 'positive' | 'negative') {
     setTransactionType(type)
   };
 
@@ -79,7 +79,7 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
+      type: transactionType,
       category: category.key,
       date: new Date()
     };
@@ -90,8 +90,9 @@ export function Register() {
       const currentData = data ? JSON.parse(data) : []
 
       const dataFormatted = [
+        newTransaction,
         ...currentData,
-        newTransaction
+
       ]
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
       reset()
@@ -134,8 +135,8 @@ export function Register() {
               error={errors.amount && errors.amount.message}
             />
             <TransactionsTypeBox>
-              <TransactionTypeBtn type="up" title="income" isActive={transactionType === 'up'} onPress={() => handleTransactionsType('up')} />
-              <TransactionTypeBtn type="down" title="outcome" isActive={transactionType === 'down'} onPress={() => handleTransactionsType('down')} />
+              <TransactionTypeBtn type="up" title="income" isActive={transactionType === 'positive'} onPress={() => handleTransactionsType('positive')} />
+              <TransactionTypeBtn type="down" title="outcome" isActive={transactionType === 'negative'} onPress={() => handleTransactionsType('negative')} />
             </TransactionsTypeBox>
 
             <TransactionCategory title={category.name}
