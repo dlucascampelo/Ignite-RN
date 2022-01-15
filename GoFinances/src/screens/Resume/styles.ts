@@ -20,19 +20,8 @@ font-family:${({ theme }) => theme.fonts.regular};
 font-size:${RFValue(18)}px;
 `;
 
-export const Form = styled.View`
-flex:1;
-justify-content: space-between;
-width:100%;
-padding:24px;
+export const Content = styled.ScrollView.attrs({
+  contentContainerStyle: { padding: 30, flex: 1, }
+})`
+
 `;
-
-export const Fields = styled.View``;
-
-export const TransactionsTypeBox = styled.View`
-flex-direction:row;
-justify-content:space-between;
-margin-top: 8px;
-margin-bottom:16px;
-`;
-
