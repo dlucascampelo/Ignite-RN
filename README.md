@@ -79,4 +79,3 @@ Este projeto esta sob a licença MIT.
     <img alt="React Native" height=175 title="React Native" src=".github/react-native.png" />
      <img alt="React Native" height="175" title="Rocketseat" src=".github/rocketseat.png" />
 </h1>
-"
