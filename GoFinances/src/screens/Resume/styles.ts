@@ -19,3 +19,9 @@ color:${({ theme }) => theme.colors.shape};
 font-family:${({ theme }) => theme.fonts.regular};
 font-size:${RFValue(18)}px;
 `;
+
+export const Content = styled.ScrollView.attrs({
+  contentContainerStyle: { padding: 30, flex: 1, }
+})`
+
+`;
