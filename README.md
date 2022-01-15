@@ -76,5 +76,7 @@ Neste módulo você irá aprender a integrar sua aplicação React Native com um
 Este projeto esta sob a licença MIT.
 
 <h1 align="center">
-    <img alt="React Native" height=200 title="Ignite React Native" src=".github/react-native.png" />
+    <img alt="React Native" height=175 title="React Native" src=".github/react-native.png" />
+     <img alt="React Native" height="175" title="Rocketseat" src=".github/rocketseat.png" />
 </h1>
+"
