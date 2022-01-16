@@ -9,7 +9,11 @@ export const Container = styled.View`
 flex: 1;
 background-color: ${({ theme }) => theme.colors.background};
 `;
-
+export const LoadContainer = styled.View`
+flex:1;
+justify-content:center;
+align-items:center;
+`
 export const Header = styled.View`
 width:100%;
 height:${RFPercentage(40)}px;
@@ -91,8 +95,3 @@ export const TransactionsList = styled(FlatList as new (props: FlatListProps<Dat
   }
 })`
 `;
-export const LoadContainer = styled.View`
-flex:1;
-justify-content:center;
-align-items:center;
-`
