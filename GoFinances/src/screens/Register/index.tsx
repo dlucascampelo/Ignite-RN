@@ -30,11 +30,12 @@ interface FormData {
 const schema = Yup.object().shape({
   name: Yup
     .string()
-    .required('Nome é obrigatório'),
+    .required('O campo Nome é obrigatório'),
   amount: Yup
     .number()
     .typeError('Informe um valor númerico')
     .positive('O Valor não pode ser negativo')
+    .required('O campo Valor é obrigatório'),
 })
 
 export function Register() {
