@@ -14,8 +14,10 @@ import LogoIcon from '../../assets/logo.svg'
 
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SignInSocialBtn } from '../../components/SignInSocialBtn';
+import { useAuth } from '../../hooks/auth';
 
 export function SignIn() {
+  const data = useAuth();
   return (
     <Container>
       <Header>
@@ -35,9 +37,9 @@ export function SignIn() {
       </Header>
       <Footer>
         <SignInContainer>
+
           <SignInSocialBtn title="Entrar com Google" svg={GoogleIcon} />
           <SignInSocialBtn title="Entrar com Apple" svg={AppleIcon} />
-
 
         </SignInContainer>
       </Footer>
