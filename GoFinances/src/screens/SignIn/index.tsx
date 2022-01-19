@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import {
   Container,
   Header,
@@ -17,7 +18,17 @@ import { SignInSocialBtn } from '../../components/SignInSocialBtn';
 import { useAuth } from '../../hooks/auth';
 
 export function SignIn() {
-  const data = useAuth();
+  const { signInWithGoogle } = useAuth();
+
+  async function handleSignInWithGoogle() {
+    try {
+      await signInWithGoogle();
+
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Erro ao logar com Google.')
+    }
+  };
   return (
     <Container>
       <Header>
@@ -38,7 +49,7 @@ export function SignIn() {
       <Footer>
         <SignInContainer>
 
-          <SignInSocialBtn title="Entrar com Google" svg={GoogleIcon} />
+          <SignInSocialBtn title="Entrar com Google" svg={GoogleIcon} onPress={handleSignInWithGoogle} />
           <SignInSocialBtn title="Entrar com Apple" svg={AppleIcon} />
 
         </SignInContainer>
