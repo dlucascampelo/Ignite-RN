@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { ActivityIndicator } from 'react-native'
+import { ActivityIndicator, Alert } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
@@ -48,18 +48,22 @@ export function Dashboard() {
 
   const theme = useTheme();
   const { signOut, user } = useAuth()
+  const dataKey = `@gofinances:transactions_user:${user.id}`
 
   function getLastTransactionDate(collection: DataListProps[], type: 'positive' | 'negative') {
 
-    const lastTransaction = new Date(Math.max.apply(Math, collection
-      .filter(transaction => transaction.type === type)
+    const collectionFilter = collection.filter(transaction => transaction.type === type)
+    if (collectionFilter.length === 0) {
+      return 0;
+    };
+
+    const lastTransaction = new Date(Math.max.apply(Math, collectionFilter
       .map(transaction => new Date(transaction.date).getTime())))
     return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString('pt-BR', { month: 'long' })}`
 
   }
 
   async function loadTransactionsData() {
-    const dataKey = '@gofinances:transactions'
     const response = await AsyncStorage.getItem(dataKey)
     const transactions = response ? JSON.parse(response) : []
 
@@ -97,7 +101,9 @@ export function Dashboard() {
     setTransactions(transactionsFormatted);
     const lastTransactionEntries = getLastTransactionDate(transactions, 'positive')
     const lastTransactionExpenses = getLastTransactionDate(transactions, 'negative')
-    const totalInterval = ` 01 a ${lastTransactionExpenses}`
+    const totalInterval = lastTransactionExpenses === 0
+      ? "Ainda não há transações"
+      : `01 a ${lastTransactionExpenses}`
 
     const total = entriesTotal - expensesTotal;
     setHighlightData({
@@ -107,7 +113,9 @@ export function Dashboard() {
             style: 'currency',
             currency: 'BRL'
           }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction: lastTransactionEntries === 0
+          ? "Ainda não há transações"
+          : `Última entrada dia ${lastTransactionEntries}`,
       },
       expenses: {
         amount: expensesTotal.toLocaleString('pt-BR',
@@ -115,8 +123,9 @@ export function Dashboard() {
             style: 'currency',
             currency: 'BRL'
           }),
-        lastTransaction: `Última saída dia ${lastTransactionExpenses}`,
-
+        lastTransaction: lastTransactionExpenses === 0
+          ? "Ainda não há transações"
+          : `Última entrada dia ${lastTransactionExpenses}`,
       },
       total: {
         amount: total.toLocaleString('pt-BR',
@@ -128,6 +137,40 @@ export function Dashboard() {
       }
     });
     setIsLoading(false)
+  }
+  async function handleRemoveSkill(transactionId: string) {
+
+    const response = await AsyncStorage.getItem(dataKey);
+    const storagedTransactions = response ? JSON.parse(response) : [];
+
+    const filteredTransactions = storagedTransactions
+      .filter((transaction: DataListProps) => transaction.id !== transactionId);
+
+    setTransactions(filteredTransactions);
+    await AsyncStorage.setItem(dataKey, JSON.stringify(filteredTransactions));
+
+    loadTransactionsData()
+  }
+  function alert(name: string, id: string,) {
+    Alert.alert(`Você deseja deletar ${String(name)}`,
+      "",
+      [
+        { text: 'Cancelar', },
+        { text: 'Deletar', onPress: () => handleRemoveSkill(id) },
+      ],
+      { cancelable: false }
+    )
+  }
+  function signOutAlert() {
+    Alert.alert(`Tem certeza que deseja sair do GoFinances?`,
+      "",
+      [
+        { text: 'Cancelar', },
+        { text: 'Confirmar', onPress: signOut },
+      ],
+      { cancelable: false }
+
+    )
   }
 
   useFocusEffect(useCallback(() => {
@@ -157,7 +200,7 @@ export function Dashboard() {
                 </User>
               </UserInfo>
 
-              <LogoutButton onPress={signOut}>
+              <LogoutButton onPress={signOutAlert}>
                 <Icon name="power" />
               </LogoutButton>
 
@@ -187,11 +230,12 @@ export function Dashboard() {
 
           <Transactions>
             <Title>Listagem</Title>
-
             <TransactionsList
               data={transactions}
               keyExtractor={item => item.id}
-              renderItem={({ item }) => <TransactionCard data={item} />}
+              renderItem={({ item }) => <TransactionCard
+                onPress={() => alert(item.name, item.id)}
+                data={item} />}
 
             />
 

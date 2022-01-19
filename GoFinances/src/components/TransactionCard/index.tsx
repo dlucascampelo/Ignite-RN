@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 import { categories } from '../../utils/categories';
 import {
   Container,
@@ -8,7 +9,11 @@ import {
   Category,
   CategoryName,
   Icon,
-  Date
+  Date,
+  IconButton,
+  IconClose,
+  InfoWrapper,
+  Divider
 } from './styles'
 
 export interface TransactionCardProps {
@@ -18,20 +23,30 @@ export interface TransactionCardProps {
   category: string;
   date: string;
 }
-interface Props {
+interface Props extends TouchableOpacityProps {
   data: TransactionCardProps
 }
-export function TransactionCard({ data }: Props) {
+export function TransactionCard({ data, ...rest }: Props) {
   const [category] = categories.filter(item => item.key === data.category
   );
 
   return (
     <Container>
-      <Title>{data.name}</Title>
-      <Amount type={data.type}>
-        {data.type === 'negative' && '- '}
-        {data.amount}
-      </Amount>
+      <InfoWrapper>
+        <Divider>
+          <Title>{data.name}</Title>
+          <Amount type={data.type}>
+            {data.type === 'negative' && '- '}
+            {data.amount}
+          </Amount>
+        </Divider>
+
+        <IconButton
+          {...rest}>
+          <IconClose name={"trash"} />
+        </IconButton>
+
+      </InfoWrapper>
 
       <Footer>
         <Category>

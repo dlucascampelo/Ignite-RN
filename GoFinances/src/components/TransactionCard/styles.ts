@@ -15,6 +15,14 @@ border-radius:5px;
 padding: 17px 24px;
 margin-bottom:16px;
 `;
+export const InfoWrapper = styled.View`
+width:100%;
+flex-direction: row;
+align-items: center;
+justify-content:space-between;
+`;
+export const Divider = styled.View``;
+
 export const Title = styled.Text`
 font-size: ${RFValue(14)}px;
 font-family:${({ theme }) => theme.fonts.regular};
@@ -52,7 +60,16 @@ export const Icon = styled(Feather)`
 font-size: ${RFValue(20)}px;
 color:${({ theme }) => theme.colors.text}
 `;
-
+export const IconButton = styled.TouchableOpacity`
+width:  ${RFValue(30)}px;
+height: ${RFValue(30)}px;
+align-items: center;
+justify-content: flex-start;
+`
+export const IconClose = styled(Feather)`
+font-size: ${RFValue(20)}px;
+color: ${({ theme }) => theme.colors.text_dark};
+`
 export const Date = styled.Text`
 font-size: ${RFValue(14)}px;
 color:${({ theme }) => theme.colors.text};
