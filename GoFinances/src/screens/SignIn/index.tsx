@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Alert } from 'react-native'
+import { ActivityIndicator, Alert, Platform } from 'react-native'
 import {
   Container,
   Header,
@@ -69,8 +69,13 @@ export function SignIn() {
         <SignInContainer>
 
           <SignInSocialBtn title="Entrar com Google" svg={GoogleIcon} onPress={handleSignInWithGoogle} />
-          <SignInSocialBtn title="Entrar com Apple" svg={AppleIcon} onPress={handleSignInWithApple} />
 
+          {Platform.OS === 'ios' &&
+            <SignInSocialBtn
+              title="Entrar com Apple"
+              svg={AppleIcon}
+              onPress={handleSignInWithApple} />
+          }
         </SignInContainer>
         {isLoading ?
           <ActivityIndicator color={theme.colors.shape} size={30} style={{ marginTop: 18 }} />
