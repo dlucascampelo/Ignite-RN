@@ -13,6 +13,7 @@ Gofinances é um aplicativo de finanças pessoais, no qual você pode registrar 
 * [Expo](https://expo.dev/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Styled Components](https://styled-components.com/)
+* [Async Storage](https://react-native-async-storage.github.io/async-storage/docs/usage/)
 
 ## 🔖 Layout
 
