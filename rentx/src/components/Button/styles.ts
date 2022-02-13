@@ -2,9 +2,11 @@ import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
+//  -------------------- INTERFACES --------------------
 interface ButtonProps extends RectButtonProps {
   color?: string;
 }
+//  -------------------- INTERFACES --------------------
 
 export const Container = styled(RectButton) <ButtonProps>`
   width:100%;
@@ -12,7 +14,10 @@ export const Container = styled(RectButton) <ButtonProps>`
 
   justify-content:center;
   align-items:center;
+  
   background-color:${({ theme, color }) => color ? color : theme.colors.main}
+  border-radius:5px;
+
 `;
 export const Title = styled.Text`
 font-family:${({ theme }) => theme.fonts.primary_500};
