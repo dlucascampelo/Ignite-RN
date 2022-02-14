@@ -41,7 +41,7 @@ export function Calendar() {
         }
       }}
       firstDay={1}
-      minDate={new Date()}
+      minDate={String(new Date())}
     />
 
   );
