@@ -1,8 +1,12 @@
 import React from 'react';
-import { BackBtn } from '../../components/BackBtn';
-import { useTheme } from 'styled-components'
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
 
 import ArrowIcon from '../../assets/arrow.svg'
+
+import { BackBtn } from '../../components/BackBtn';
+import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 import {
   Container,
   Header,
@@ -14,12 +18,17 @@ import {
   Content,
   Footer,
 } from './styles';
-import { StatusBar } from 'react-native';
-import { Button } from '../../components/Button';
-import { Calendar } from '../../components/Calendar';
+import { useTheme } from 'styled-components'
+
 
 export function Scheduling() {
   const theme = useTheme();
+  const { navigate, goBack } = useNavigation();
+
+  function handleConfirmRental() {
+    navigate('SchedulingDetails')
+  }
+
   return (
     <Container>
       <StatusBar
@@ -28,7 +37,7 @@ export function Scheduling() {
         backgroundColor="transparent"
       />
       <Header>
-        <BackBtn color={theme.colors.shape} onPress={() => { }} />
+        <BackBtn color={theme.colors.shape} onPress={() => goBack()} />
 
         <Title>Escolha uma{'\n'}data de inicio e{'\n'}fim do aluguel</Title>
 
@@ -52,7 +61,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

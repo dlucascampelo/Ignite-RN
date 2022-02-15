@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import { Accessory } from '../../components/Accessory';
 import { BackBtn } from '../../components/BackBtn';
 import { ImageSlider } from '../../components/ImageSlider';
@@ -29,11 +31,19 @@ import {
 import { Button } from '../../components/Button';
 
 export function CarDetails() {
+  const { navigate, goBack } = useNavigation();
+
+  function handleCarDetails() {
+    navigate('Scheduling')
+  }
+  function handleGoBack() {
+    goBack();
+  }
   return (
     <Container>
 
       <Header>
-        <BackBtn onPress={() => { }} />
+        <BackBtn onPress={handleGoBack} />
       </Header>
 
       <ImagesWrapper>
@@ -69,7 +79,7 @@ export function CarDetails() {
         </About>
       </Content>
       <Footer>
-        <Button title="Escolher periodo de aluguel" />
+        <Button title="Escolher periodo de aluguel" onPress={handleCarDetails} />
       </Footer>
     </Container>
   );

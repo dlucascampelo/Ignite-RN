@@ -13,7 +13,7 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo'
-import { Home } from './src/screens/Home';
+import { Routes } from './src/Routes/index.routes';
 
 
 export default function App() {
@@ -31,7 +31,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <Routes />
     </ThemeProvider>
   );
 }

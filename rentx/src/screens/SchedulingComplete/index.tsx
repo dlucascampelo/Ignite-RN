@@ -1,8 +1,11 @@
 import React from 'react';
-import { useWindowDimensions } from 'react-native'
+import { StatusBar, useWindowDimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
 import BrandIcon from '../../assets/logo_background_gray.svg';
 import DoneIcon from '../../assets/done.svg';
+
+import { ConfirmButton } from '../../components/ConfirmButton';
 
 import {
   Container,
@@ -11,12 +14,21 @@ import {
   Message,
   Footer,
 } from './styles';
-import { ConfirmButton } from '../../components/ConfirmButton';
 
 export function SchedulingComplete() {
   const { width } = useWindowDimensions()
+  const { navigate } = useNavigation();
+
+  function handleComplete() {
+    navigate('Home')
+  }
   return (
     <Container>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='transparent'
+        translucent
+      />
       <BrandIcon width={width} />
       <Content>
         <DoneIcon width={80} height={80} />
@@ -29,7 +41,7 @@ export function SchedulingComplete() {
         </Message>
       </Content>
       <Footer>
-        <ConfirmButton title="OK" />
+        <ConfirmButton title="OK" onPress={handleComplete} />
       </Footer>
     </Container>
   );
