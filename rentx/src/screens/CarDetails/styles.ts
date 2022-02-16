@@ -43,7 +43,7 @@ export const Description = styled.View`
 
 export const Brand = styled.Text`
 font-family:${({ theme }) => theme.fonts.secondary_500};
-color: ${({ theme }) => theme.colors.text_details}
+color: ${({ theme }) => theme.colors.text_details};
 font-size:${RFValue(10)}px;
 
 text-transform:uppercase;
@@ -51,7 +51,7 @@ text-transform:uppercase;
 
 export const Name = styled.Text`
 font-family:${({ theme }) => theme.fonts.secondary_500};
-color: ${({ theme }) => theme.colors.title}
+color: ${({ theme }) => theme.colors.title};
 font-size:${RFValue(25)}px;
 
 `;
@@ -61,7 +61,7 @@ export const Rent = styled.View`
 
 export const Period = styled.Text`
 font-family:${({ theme }) => theme.fonts.secondary_500};
-color: ${({ theme }) => theme.colors.text_details}
+color: ${({ theme }) => theme.colors.text_details};
 font-size:${RFValue(10)}px;
 
 text-transform:uppercase;
@@ -69,13 +69,13 @@ text-transform:uppercase;
 
 export const Price = styled.Text`
 font-family:${({ theme }) => theme.fonts.secondary_500};
-color: ${({ theme }) => theme.colors.main}
+color: ${({ theme }) => theme.colors.main};
 font-size:${RFValue(25)}px;
 `;
 
 export const About = styled.Text`
 font-family:${({ theme }) => theme.fonts.primary_400};
-color: ${({ theme }) => theme.colors.text}
+color: ${({ theme }) => theme.colors.text};
 font-size:${RFValue(15)}px;
 text-align:justify;
 
