@@ -70,6 +70,15 @@ export function SchedulingDetails() {
       ...dates,
     ];
 
+
+    await api.post(`/schedules_byuser`, {
+      user_id: 1,
+      car,
+      startDate: format(parseISO(dates[0]), 'dd/MM/yyyy'),
+      endDate: format(parseISO(dates[dates.length - 1]), 'dd/MM/yyyy'),
+    })
+
+
     //Essa é uma outra forma de lidar com promisses, além do tradicional async await
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,

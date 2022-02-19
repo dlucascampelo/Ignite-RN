@@ -37,3 +37,19 @@ font-size: ${RFValue(15)}px;
 font-family: ${({ theme }) => theme.fonts.primary_400};
 color: ${({ theme }) => theme.colors.text};
 `;
+
+export const MyCarsButton = styled.TouchableOpacity`
+width:60px;
+height:60px;
+
+align-items:center;
+justify-content:center;
+border-radius:30px;
+
+position:absolute;
+
+bottom:13px;
+right:22px;
+
+background-color: ${({ theme }) => theme.colors.main};
+`;
