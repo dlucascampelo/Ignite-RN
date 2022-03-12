@@ -14,6 +14,7 @@ import {
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo'
 import { Routes } from './src/Routes/index.routes';
+import { Splash } from './src/screens/Splash';
 
 
 export default function App() {
@@ -31,7 +32,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      {/* <Routes /> */}
+      <Splash />
     </ThemeProvider>
   );
 }

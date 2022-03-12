@@ -38,7 +38,6 @@ export function Home() {
       try {
         const response = await api.get('/cars')
         setCars(response.data)
-
       } catch (error) {
         console.log(error)
 
