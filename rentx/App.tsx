@@ -32,8 +32,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Routes /> */}
-      <Splash />
+      <Routes />
     </ThemeProvider>
   );
 }
