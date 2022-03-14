@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet, BackHandler } from 'react-native';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
 
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -75,6 +75,7 @@ export function Home() {
   function handleOpenMyCars() {
     navigate('MyCars')
   };
+
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -91,6 +92,12 @@ export function Home() {
     fetchCars()
   }, []);
 
+  useFocusEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress', () => true
+    );
+    return () => backHandler.remove();
+  });
   return (
     <Container>
       <StatusBar
@@ -102,7 +109,12 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>Total de {cars.length} {cars.length >= 2 || cars.length === 0 ? 'carros' : 'carro'}</TotalCars>
+
+          {
+            !loading &&
+            <TotalCars>Total de {cars.length} {cars.length >= 2 || cars.length === 0 ? 'carros' : 'carro'}</TotalCars>
+          }
+
         </HeaderContent>
       </Header>
 
