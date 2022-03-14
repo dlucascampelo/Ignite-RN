@@ -25,7 +25,7 @@ import {
   CarFooterDate,
 } from './styles';
 import { useTheme } from 'styled-components';
-import { Load } from '../../components/Load';
+import { LoadAnimated } from '../../components/LoadAnimated';
 
 interface CarProps {
   car: CarDTO;
@@ -40,6 +40,7 @@ export function MyCars() {
   const [loading, setLoading] = useState(true);
   const theme = useTheme()
   const { navigate, goBack } = useNavigation();
+
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -55,6 +56,7 @@ export function MyCars() {
     }
     fetchCars()
   }, [])
+
   return (
     <Container>
       <StatusBar
@@ -69,7 +71,7 @@ export function MyCars() {
         <Subtitle>Conforto segurança e praticidade</Subtitle>
       </Header>
 
-      {loading ? <Load />
+      {loading ? <LoadAnimated />
         :
         <Content>
           <Appointments>
