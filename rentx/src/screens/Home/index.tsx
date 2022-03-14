@@ -13,7 +13,7 @@ import api from '../../services/api';
 import { CarDTO } from '../../dtos/CarDTO';
 
 import { CarCard } from '../../components/CarCard';
-import { Load } from '../../components/Load';
+import { LoadAnimated } from '../../components/LoadAnimated';
 
 import Animated, {
   useSharedValue,
@@ -68,7 +68,6 @@ export function Home() {
     },
   });
 
-
   function handleCarDetails(car: CarDTO) {
     navigate('CarDetails', { car })
   };
@@ -118,7 +117,7 @@ export function Home() {
         </HeaderContent>
       </Header>
 
-      {loading ? <Load />
+      {loading ? <LoadAnimated />
         :
         <CarList
           data={cars}
