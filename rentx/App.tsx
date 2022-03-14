@@ -13,8 +13,8 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo'
+
 import { Routes } from './src/Routes/index.routes';
-import { Splash } from './src/screens/Splash';
 
 
 export default function App() {

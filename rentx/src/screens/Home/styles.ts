@@ -1,9 +1,11 @@
 import { FlatList, FlatListProps } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { CarDTO } from '../../dtos/CarDTO';
 
-export const Container = styled.View`
+
+export const Container = styled(GestureHandlerRootView)`
   flex: 1;
   background-color:${({ theme }) => theme.colors.background_primary};
 `;
