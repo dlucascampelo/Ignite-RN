@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 
 import { Button } from '../../components/Button';
@@ -18,52 +18,65 @@ import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 
 export function SignIn() {
-  const theme = useTheme()
+  const theme = useTheme();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <Container>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor='transparent'
-        translucent
-      />
+    <KeyboardAvoidingView behavior='position' enabled>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
-      <Header>
-        <Title>Estamos {'\n'}quase lá.</Title>
-        <Subtitle>Faça seu login para começar{'\n'}uma experiência incrível.</Subtitle>
-      </Header>
+        <Container>
+          <StatusBar
+            barStyle='dark-content'
+            backgroundColor='transparent'
+            translucent
+          />
 
-      <Form>
-        <Input
-          iconName='mail'
-          placeholder='Email'
-          placeholderTextColor={theme.colors.text_details}
-          keyboardType='email-address'
-          autoCorrect={false}
-          autoCapitalize='none'
-        />
-        <PasswordInput
-          iconName={'lock'}
-          placeholder='Senha'
-          placeholderTextColor={theme.colors.text_details}
-        />
-      </Form>
+          <Header>
+            <Title>Estamos {'\n'}quase lá.</Title>
+            <Subtitle>Faça seu login para começar{'\n'}uma experiência incrível.</Subtitle>
+          </Header>
 
-      <Footer>
-        <Button
-          title='Login'
-          onPress={() => { }}
-          enabled={false}
-          loading={false} />
-        <Button
-          title='Criar conta gratuita'
-          color={theme.colors.background_secondary}
-          light
-          onPress={() => { }}
-          loading={false}
+          <Form>
+            <Input
+              iconName='mail'
+              placeholder='Email'
+              placeholderTextColor={theme.colors.text_details}
+              keyboardType='email-address'
+              autoCorrect={false}
+              autoCapitalize='none'
+              value={email}
+              onChangeText={setEmail}
+            />
+            <PasswordInput
+              iconName={'lock'}
+              placeholder='Senha'
+              placeholderTextColor={theme.colors.text_details}
+              value={password}
+              onChangeText={setPassword}
+            />
+          </Form>
 
-        />
-      </Footer>
+          <Footer>
+            <Button
+              title='Login'
+              onPress={() => { }}
+              enabled={false}
+              loading={false} />
+            <Button
+              title='Criar conta gratuita'
+              color={theme.colors.background_secondary}
+              light
+              onPress={() => { }}
+              loading={false}
 
-    </Container>
+            />
+          </Footer>
+        </Container>
+
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
