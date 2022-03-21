@@ -10,6 +10,8 @@ import { SchedulingComplete } from '../screens/SchedulingComplete';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { MyCars } from '../screens/MyCars';
 import { SignIn } from '../screens/SignIn';
+import { SignUpFirstStep } from '../screens/SignUp/SignUpFirstStep';
+import { SignUpSecondStep } from '../screens/SignUp/SignUpSecondStep';
 
 
 export function StackRoutes() {
@@ -19,19 +21,26 @@ export function StackRoutes() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="SignIn"
     >
       {/* <Screen name="Splash" component={Splash} /> */}
       <Screen name="SignIn" component={SignIn} />
+      <Screen name="SignUpFirstStep" component={SignUpFirstStep} />
+      <Screen name="SignUpSecondStep" component={SignUpSecondStep} />
+
       <Screen name="Home" component={Home}
         options={{
           gestureEnabled: false,
         }}
       />
+
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingComplete" component={SchedulingComplete} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
       <Screen name="MyCars" component={MyCars} />
+
+
     </Navigator>
   );
 }
