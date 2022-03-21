@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
-
+import { StatusBar, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import * as Yup from 'yup';
 
 import { Button } from '../../components/Button';
-
+import { Input } from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
 
 import {
   Container,
@@ -14,14 +15,46 @@ import {
   Footer,
 } from './styles';
 import { useTheme } from 'styled-components/native';
-import { Input } from '../../components/Input';
-import { PasswordInput } from '../../components/PasswordInput';
+import { useNavigation } from '@react-navigation/native';
+
 
 export function SignIn() {
   const theme = useTheme();
-
+  const { navigate } = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+
+  async function handleSignIn() {
+    console.log('apertou')
+    try {
+      const schema = Yup.object().shape({
+        email: Yup
+          .string()
+          .required('Email obrigatório')
+          .email('Digite um email válido'),
+
+        password: Yup
+          .string()
+          .required('A senha é obrigatória')
+      });
+      await schema.validate({ email, password });
+      Alert.alert('Tudo certo!')
+    }
+    catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        Alert.alert('Ops!', error.message);
+      }
+      else {
+        Alert.alert('Erro na autenticação.', 'Ocorreu um erro ao fazer o login, verifique suas credenciais')
+      }
+    };
+  };
+
+
+  function handleSignUp() {
+    navigate('SignUpFirstStep')
+  };
 
   return (
     <KeyboardAvoidingView behavior='position' enabled>
@@ -43,7 +76,6 @@ export function SignIn() {
             <Input
               iconName='mail'
               placeholder='Email'
-              placeholderTextColor={theme.colors.text_details}
               keyboardType='email-address'
               autoCorrect={false}
               autoCapitalize='none'
@@ -53,7 +85,6 @@ export function SignIn() {
             <PasswordInput
               iconName={'lock'}
               placeholder='Senha'
-              placeholderTextColor={theme.colors.text_details}
               value={password}
               onChangeText={setPassword}
             />
@@ -62,14 +93,14 @@ export function SignIn() {
           <Footer>
             <Button
               title='Login'
-              onPress={() => { }}
-              enabled={false}
+              onPress={handleSignIn}
+              disabled={false}
               loading={false} />
             <Button
               title='Criar conta gratuita'
               color={theme.colors.background_secondary}
               light
-              onPress={() => { }}
+              onPress={handleSignUp}
               loading={false}
 
             />
@@ -79,4 +110,4 @@ export function SignIn() {
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
-}
+};
