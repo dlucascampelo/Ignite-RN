@@ -87,7 +87,14 @@ export function SchedulingDetails() {
     api.put(`/schedules_bycars/${car.id}`, {
       id: car.id,
       unavailable_dates
-    }).then(() => navigate('SchedulingComplete'))
+    }).then(() => {
+      navigate('ActionCompleted', {
+        title: 'Carro alugado!',
+        message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.`,
+        nextRouteName: 'Home'
+      });
+    })
+
       .catch(() => {
         setLoading(false)
         Alert.alert('Não foi possível confirmar o agendamento.')

@@ -26,7 +26,6 @@ export function SignIn() {
 
 
   async function handleSignIn() {
-    console.log('apertou')
     try {
       const schema = Yup.object().shape({
         email: Yup
@@ -39,7 +38,7 @@ export function SignIn() {
           .required('A senha é obrigatória')
       });
       await schema.validate({ email, password });
-      Alert.alert('Tudo certo!')
+      navigate('Home')
     }
     catch (error) {
       if (error instanceof Yup.ValidationError) {
@@ -50,8 +49,6 @@ export function SignIn() {
       }
     };
   };
-
-
   function handleSignUp() {
     navigate('SignUpFirstStep')
   };
