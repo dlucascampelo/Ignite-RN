@@ -1,6 +1,6 @@
-import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+import React, { useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
 
 
 import { BackBtn } from '../../../components/BackBtn';
@@ -18,14 +18,43 @@ import {
   FormTitle,
 } from './styles';
 import { useTheme } from 'styled-components';
+import { ActionCompleted } from '../../ActionCompleted';
 
+interface Params {
+  user: {
+    name: string;
+    email: string;
+    cnh: string;
+  },
+}
 
 export function SignUpSecondStep() {
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
   const { navigate, goBack } = useNavigation();
+  const route = useRoute();
+  const { user } = route.params as Params;
+
   const theme = useTheme()
 
   function handleSignUp() {
-    navigate('Home');
+    if (!password) {
+      return Alert.alert('O campo SENHA não pode ficar vazio.')
+    }
+    if (!confirmPassword) {
+      return Alert.alert('O campo CONFIRMAR SENHA não pode ficar vazio.')
+    }
+    if (password != confirmPassword) {
+      return Alert.alert('As senhas precisam ser iguais.')
+    }
+    // <ActionCompleted/>
+
+    navigate('ActionCompleted', {
+      title: 'Conta Criada!',
+      message: `Agora é só fazer login\ne aproveitar.`,
+      nextRouteName: 'SignIn'
+    });
   }
 
   return (
@@ -48,10 +77,14 @@ export function SignUpSecondStep() {
             <PasswordInput
               iconName="lock"
               placeholder="Senha"
+              onChangeText={setPassword}
+              value={password}
             />
             <PasswordInput
               iconName="lock"
               placeholder="Repetir senha"
+              onChangeText={setConfirmPassword}
+              value={confirmPassword}
             />
           </Form>
           <Button title="Cadastrar" color={theme.colors.success} onPress={handleSignUp} />
