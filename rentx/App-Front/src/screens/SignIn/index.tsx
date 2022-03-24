@@ -28,14 +28,13 @@ export function SignIn() {
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
+        password: Yup
+          .string()
+          .required('A senha é obrigatória'),
         email: Yup
           .string()
           .required('Email obrigatório')
-          .email('Digite um email válido'),
-
-        password: Yup
-          .string()
-          .required('A senha é obrigatória')
+          .email('Digite um email válido')
       });
       await schema.validate({ email, password });
       navigate('Home')
