@@ -2,9 +2,10 @@
 declare namespace ReactNavigation {
   export interface RootParamList extends RootStackParamList {
     Splash: NavigationStackProp<string>;
+    SignIn: NavigationStackProp<string>;
     SignUpFirstStep: NavigationStackProp<string>;
-
     SignUpSecondStep: NavigationStackProp<string>;
+
 
     Home: NavigationStackProp<string>;
 
