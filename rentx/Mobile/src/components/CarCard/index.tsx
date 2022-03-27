@@ -34,8 +34,8 @@ export function CarCard({ data, ...rest }: Props) {
 
         <About>
           <Rent>
-            <Period>{`Ao dia ${data.rent.period}`}</Period>
-            <Price>{`R$ ${data.rent.price}`}</Price>
+            <Period>{`Ao dia ${data.period}`}</Period>
+            <Price>{`R$ ${data.price}`}</Price>
           </Rent>
 
           <FuelType>
