@@ -12,8 +12,12 @@ import { MyCars } from '../screens/MyCars';
 export function AppStackRoutes() {
   const { Navigator, Screen } = createNativeStackNavigator();
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName="Home">
-
+    <Navigator
+      initialRouteName="Splash"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Screen name="Home" component={Home} />
       <Screen name="MyCars" component={MyCars} />
       <Screen name="CarDetails" component={CarDetails} />

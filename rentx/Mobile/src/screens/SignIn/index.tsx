@@ -40,7 +40,6 @@ export function SignIn() {
       });
       await schema.validate({ email, password });
       signIn({ email, password })
-      navigate('Home');
     }
     catch (error) {
       if (error instanceof Yup.ValidationError) {
