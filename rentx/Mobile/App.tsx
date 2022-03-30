@@ -1,21 +1,29 @@
-import React from "react";
-import AppLoading from "expo-app-loading";
-import { ThemeProvider } from "styled-components";
-import { AppProvider } from "./src/hooks";
-import { Routes } from "./src/routes";
-
+import React from 'react';
+import { LogBox } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { ThemeProvider } from 'styled-components';
+import { AppProvider } from './src/hooks';
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium
+} from '@expo-google-fonts/inter';
 import {
   Archivo_400Regular,
   Archivo_500Medium,
-  Archivo_600SemiBold,
-} from "@expo-google-fonts/archivo";
-import { Inter_400Regular, Inter_500Medium } from "@expo-google-fonts/inter";
+  Archivo_600SemiBold
+} from '@expo-google-fonts/archivo';
+import { Routes } from './src/Routes';
+import theme from './src/global/styles/theme';
 
-import { useFonts } from "expo-font";
-import theme from "./src/styles/theme";
+
+
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
+]);
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
+  const [fontLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
     Archivo_400Regular,
@@ -23,8 +31,8 @@ export default function App() {
     Archivo_600SemiBold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  if (!fontLoaded) {
+    return <AppLoading />
   }
 
   return (
