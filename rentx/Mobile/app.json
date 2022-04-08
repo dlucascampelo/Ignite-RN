@@ -1,7 +1,9 @@
 {
+  "name": "rentx",
+  "displayName": "rentx",
   "expo": {
-    "name": "rentxappreact",
-    "slug": "rentxappreact",
+    "name": "rentx",
+    "slug": "rentx",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
@@ -10,6 +12,5 @@
       "image": "./assets/splash.png",
       "backgroundColor": "#1B1B1F"
     }
-  },
-  "name": "rentxappreact"
+  }
 }

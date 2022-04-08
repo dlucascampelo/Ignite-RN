@@ -26,8 +26,8 @@ const userSchema = tableSchema({
     {
       name: 'token',
       type: 'string'
-    },
+    }
   ]
-});
+})
 
 export { userSchema }

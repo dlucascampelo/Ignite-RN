@@ -1,104 +1,111 @@
 import React, { useState } from 'react';
+import { 
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import * as Yup from 'yup';
 
-import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
-import * as Yup from 'yup'
-
-import { BackBtn } from '../../../components/BackBtn';
+import { BackButton } from '../../../components/BackButton';
+import { Bullet } from '../../../components/Bullet';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
-import { Bullet } from '../../../components/Bullet';
 
 import {
   Container,
   Header,
-  BulletWrapper,
+  Steps,
   Title,
   Subtitle,
   Form,
-  FormTitle,
+  FormTitle
 } from './styles';
 
+export function SignUpFirstStep(){
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [driverLicense, setDriverLicense] = useState('');
 
-export function SignUpFirstStep() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const navigation = useNavigation();
 
-  const [driverLicense, setDriverLicense] = useState('')
-  const { navigate, goBack } = useNavigation();
+  function handleBack() {
+    navigation.goBack();    
+  }
 
-
-  async function handleGoStep2() {
+  async function handleNextStep() {
     try {
       const schema = Yup.object().shape({
-        name: Yup
-          .string()
-          .required('Nome é obrigatório'),
-
-        email: Yup
-          .string()
-          .required('Email é obrigatório')
-          .email('Email inválido'),
-
-        driverlicense: Yup
-          .string()
-          .required('A CNH é obrigatória')
+        driverLicense: Yup.string()
+        .required('CNH é obrigatória'),
+        email: Yup.string()
+        .email('E-mail inválido')
+        .required('E-mail é obrigatório'),
+        name: Yup.string()
+        .required('Nome é obrigatório')
       });
+
       const data = { name, email, driverLicense };
       await schema.validate(data);
-
-      navigate('SignUpSecondStep', { user: data });
-
-    }
-    catch (error) {
-      if (error instanceof Yup.ValidationError) {
-        Alert.alert('Ops!', error.message);
+      
+      navigation.navigate('SignUpSecondStep', { user: data });
+    } catch (error) {
+      if(error instanceof Yup.ValidationError){
+        return Alert.alert('Opa', error.message);
       }
-      else {
-        Alert.alert('Erro ao tentar se registrar.')
-      };
-    };
-  };
+    }
+  }
 
   return (
-    <KeyboardAvoidingView behavior='position' enabled>
+    <KeyboardAvoidingView behavior="position" enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <Container>
           <Header>
-            <BackBtn onPress={goBack} />
-            <BulletWrapper>
+            <BackButton onPress={handleBack} />
+            <Steps>
               <Bullet active />
               <Bullet />
-            </BulletWrapper>
+            </Steps>
           </Header>
 
-          <Title>Crie sua{'\n'}conta</Title>
-          <Subtitle>Faça seu cadastro de {'\n'}forma rápida e fácil </Subtitle>
+          <Title>
+            Crie sua{'\n'}conta
+          </Title>
+          <Subtitle>
+            Faça seu cadastro de{'\n'}
+            forma rápida e fácil
+          </Subtitle>
 
           <Form>
             <FormTitle>1. Dados</FormTitle>
-            <Input
+            <Input 
               iconName="user"
               placeholder="Nome"
               onChangeText={setName}
               value={name}
             />
-            <Input
+            <Input 
               iconName="mail"
-              placeholder="Email"
+              placeholder="E-mail"
               keyboardType="email-address"
               onChangeText={setEmail}
               value={email}
             />
-            <Input
+            <Input 
               iconName="credit-card"
-              placeholder="DRIVERLICENSE"
+              placeholder="CNH"
               keyboardType="numeric"
               onChangeText={setDriverLicense}
               value={driverLicense}
             />
           </Form>
-          <Button title="Próximo" onPress={handleGoStep2} />
+
+          <Button 
+            title="Próximo"      
+            onPress={handleNextStep}  
+          />
+
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

@@ -1,8 +1,8 @@
 import React from 'react';
-import { LogBox } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
 import { AppProvider } from './src/hooks';
+
 import {
   useFonts,
   Inter_400Regular,
@@ -13,33 +13,29 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold
 } from '@expo-google-fonts/archivo';
-import { Routes } from './src/Routes';
-import theme from './src/global/styles/theme';
 
+import { Routes } from './src/routes';
 
-
-LogBox.ignoreLogs([
-  "[react-native-gesture-handler] Seems like you\'re using an old API with gesture components, check out new Gestures system!",
-]);
+import theme from './src/styles/theme';
 
 export default function App() {
-  const [fontLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
     Archivo_400Regular,
     Archivo_500Medium,
-    Archivo_600SemiBold,
+    Archivo_600SemiBold
   });
 
-  if (!fontLoaded) {
+  if(!fontsLoaded){
     return <AppLoading />
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>    
       <AppProvider>
-        <Routes />
-      </AppProvider>
+        <Routes />      
+      </AppProvider>  
     </ThemeProvider>
-  );
+  )
 }
