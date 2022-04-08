@@ -39,8 +39,13 @@ $ yarn install
 
 $ npm install
 
-# Inicie o projeto
-$ expo start
+# Inicie o front end do projeto
+$ yarn react-native start
+$ yarn android
+
+# Inicie o sever do projeto
+$ yarn start
+
 
 # Depois, é só abrir o app pelo Expo Go ou pelo emulador
 ```
