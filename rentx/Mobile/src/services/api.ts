@@ -1,7 +1,7 @@
-import Axios from 'axios';
+import axios from 'axios';
 
-const api = Axios.create({
-  baseURL: 'http://192.168.1.8:3333/'
-
+const api = axios.create({
+  baseURL: 'http://192.168.0.107:3333',
 });
-export default api;
+
+export {api};
